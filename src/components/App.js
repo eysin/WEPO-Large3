@@ -1,26 +1,32 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Container } from 'shards-react';
-import NavBar from './components/NavBar';
-import About from './components/About';
-import Bundles from './components/Bundles';
-import Products from './components/Products';
-import Cart from './components/Cart';
-import Main from './components/Main';
 
-const App = () => (
-    <>
-      <NavBar />
-      <Container>
+import { Route, Switch } from 'react-router-dom';
+import NavBar from './NavBar';
+import About from './About';
+import Bundles from './Bundles';
+import Products from './Products';
+import Cart from './Cart';
+import NotFound from './NotFound';
+import Main from './Main';
+
+
+const App = () => {
+    return (
+    <React.Fragment>
+        <NavBar />
+        <div>
         <Switch>
-          <Route exact path="/" component={ Main } />
-          <Route path="/products" component={ Products } />
-          <Route path="/bundles" component={ Bundles } />
-          <Route path="/about" component={ About } />
-          <Route path="/cart" component={ Cart } />
+            <Route exact path="/" component={ Main } />
+            <Route path="/products" component={ Products } />
+            <Route path="/bundles" component={ Bundles } />
+            <Route path="/about" component={ About } />
+            <Route path="/cart" component={ Cart } />
+            <Route component={ NotFound } />
         </Switch>
-      </Container>
-    </>
-  );
-  
+        </div>
+    </React.Fragment>
+    )
+    return <p>Start working here!</p>
+};
+
 export default App;

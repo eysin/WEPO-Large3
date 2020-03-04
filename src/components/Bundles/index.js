@@ -1,26 +1,8 @@
 import React from 'react';
-import { getBundles } from '../../services/bubbleService'
 
-class Bundles extends React.Component {
 
-    // componentDidMount() {
-    //     this.setState({
-    //         bundles: getBundles()
-    //     });
-    // }
-
-    // state = {
-    //     bundles: []
-    // };
-
-    // render() {
-    //     return (
-    //         <div>
-    //             <h1> Bundles </h1>
-    //         </div>
-    //     )
-    // }
+const Bundle = (props) => {
+  return (<h1>Bundles Page</h1>)
 }
 
-
-export default Bundles;
+export default Bundle;

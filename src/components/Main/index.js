@@ -1,11 +1,8 @@
 import React from 'react';
-import img from '../../resources/bubbles.png';
 
-const Main = () => (
-  <div className="main">
-    <img src={ img } alt=""/>
-    <p>Welcome to Bubblify!</p>
-  </div>
-)
+const Main = () => {
+
+  return <h1>Main</h1>
+}
 
 export default Main;
