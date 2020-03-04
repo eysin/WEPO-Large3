@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Route, Switch } from 'react-router-dom';
+import { Container } from "shards-react";
+
 import NavBar from './NavBar';
 import About from './About';
 import Bundles from './Bundles';
@@ -14,7 +16,7 @@ const App = () => {
     return (
     <React.Fragment>
         <NavBar />
-        <div>
+        <Container>
         <Switch>
             <Route exact path="/" component={ Main } />
             <Route path="/products" component={ Products } />
@@ -23,7 +25,7 @@ const App = () => {
             <Route path="/cart" component={ Cart } />
             <Route component={ NotFound } />
         </Switch>
-        </div>
+        </Container>
     </React.Fragment>
     )
     return <p>Start working here!</p>
