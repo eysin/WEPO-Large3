@@ -1,10 +1,8 @@
 import React from 'react';
-
-
-
+import NavigationBar from './NavigationBar';
 
 const App = () => {
-    return <p>Start working here!</p>
+    return <NavigationBar/>
 };
 
 export default App;
