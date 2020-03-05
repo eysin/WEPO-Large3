@@ -1,5 +1,5 @@
 /* You can add styles here */
-li a{
+li a {
     color: white;
     margin-right: 25px;
     font-size: large;
@@ -12,3 +12,37 @@ li a{
 .productContainer{
     padding: 1%;
 }
+
+nav {
+    margin-bottom: 5%;
+}
+
+p {
+    font-size: 18px;
+}
+
+#about-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    width: 50%;
+}
+
+#main-img img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    width: 100%;
+}
+
+#main-text {
+    text-align: center;
+}
+
+.fa {
+    font-size: 25px;
+    margin-right: 15px;
+}
+
