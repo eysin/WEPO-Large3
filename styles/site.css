@@ -37,8 +37,9 @@ p {
     width: 100%;
 }
 
-#main-text {
+#main-text, #about-text, #products-text, #bundles-text {
     text-align: center;
+    margin: 3%;
 }
 
 .fa {
@@ -46,3 +47,10 @@ p {
     margin-right: 15px;
 }
 
+.productContainer {
+    text-align: center;
+}
+
+.productContainer a {
+    color: black;
+}

@@ -22,23 +22,25 @@ class Bundles extends React.Component {
 
 		return (
 			<Container>
+				<div id="bundles-text">
+					<h1>Our Bundles</h1>
+				</div>
 				{bundles.length != 0 ? (
 					<Row>
 						{bundles.bundles.map((value, index) => (
 							<Col sm="4" key={index} className="productContainer">
 								<h3>{value.name}</h3>
-								<p>
+								<h3>
 									{value.items.map((element, key) => {
 										let i = this.state.products.find(i => i.id == element);
-
 										return (
 											<div key={key}>
 												<img src={i.image} />
-												<p>{i.name}</p>
+												<h3>{i.name}</h3>
 											</div>
 										);
 									})}
-								</p>
+								</h3>
 							</Col>
 						))}
 					</Row>

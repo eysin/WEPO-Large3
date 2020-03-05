@@ -5,6 +5,7 @@ import { getProducts } from '../../services/bubbleService';
 import { Link } from 'react-router-dom';
 
 class Product extends React.Component {
+
 	componentDidMount() {
 		const products = getProducts();
 
@@ -19,7 +20,9 @@ class Product extends React.Component {
 		const products = this.state;
 		return (
 			<Container>
-				<h1>Our Products</h1>
+				<div id="products-text">
+					<h1>Our Products</h1>
+				</div>
 				{products.length != 0 ? (
 					<Row>
 						{products.products.map((value, index) => (
