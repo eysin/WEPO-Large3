@@ -1,40 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from "shards-react";
+import { Container, Row, Col } from 'shards-react';
+import { getProducts } from '../../services/bubbleService';
+import { Link } from 'react-router-dom';
 
-import { getProducts } from '../../services/productService';
+class Product extends React.Component {
+	componentDidMount() {
+		const products = getProducts();
 
-const Product = (props) => {
-  const [ products, setProducts ] = useState([]);
-  
-  useEffect(() => {
-    getProducts()
-    .then(products => {
-      console.log(products)
-      setProducts(JSON.parse(JSON.stringify(products)))
-    })
-    
-  }, []);
-  return (
-      <Container>{products.length != 0 ? 
-        <Row>
-          {products.map((value, index) => 
-            <Col sm="4" key={index} className="productContainer">
-             <a href={"/products/" + value.id}><h3>{ value.name}</h3></a>
-             <img src={value.image}/>
-             <p>{value.description}</p>
-            </Col>
-          )}
-         </Row>
-          :null}
-      </Container>
-    )
+		this.setState({
+			products: products,
+		});
+	}
+	state = {
+		products: [],
+	};
+	render() {
+		const products = this.state;
+		return (
+			<Container>
+				<h1>Our Products</h1>
+				{products.length != 0 ? (
+					<Row>
+						{products.products.map((value, index) => (
+							<Col sm="4" key={index} className="productContainer">
+								<h3>
+									<Link
+										to={{ pathname: `/products/${value.id}`, product: value }}
+									>
+										{value.name}
+									</Link>
+								</h3>
+								<img src={value.image} />
+							</Col>
+						))}
+					</Row>
+				) : null}
+			</Container>
+		);
+	}
 }
-
-Product.propTypes = {
-    //Stores the information on where the customer is 
-    location: PropTypes.object.isRequired
-}
-
 
 export default Product;

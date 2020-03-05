@@ -1,32 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from "shards-react";
+import { Container } from 'shards-react';
 
-import { getProduct } from '../../services/detailService';
-
-const Product = (props) => {
-  const [ product, setProduct ] = useState();
-  
-  useEffect(() => {
-    getProduct(1)
-    .then(product => {
-      console.log(product)
-      setProduct(JSON.parse(JSON.stringify(product)))
-    })
-    
-  }, []);
-  return (
-      <Container>
-   
-          
-      </Container>
-    )
+class ProductDetails extends React.Component {
+	componentDidMount() {
+		const product = this.props.location.product;
+		if (product.id !== undefined) {
+			this.setState({
+				id: product.id,
+				name: product.name,
+				description: product.description,
+				price: product.price,
+				image: product.image,
+			});
+		}
+	}
+	state = {
+		id: '',
+		name: '',
+		description: '',
+		price: '',
+		image: '',
+	};
+	render() {
+		const { id, name, description, price, image } = this.state;
+		return (
+			<Container>
+				<h3>{name}</h3>
+				<img src={image} />
+				<p>{description}</p>
+				<p>Price: {price}</p>
+			</Container>
+		);
+	}
 }
 
-Product.propTypes = {
-    //Stores the information on where the customer is 
-    location: PropTypes.object.isRequired
-}
+ProductDetails.prototype = {
+	// The Product we are getting details for
+	product: PropTypes.object,
+};
 
-
-export default Product;
+export default ProductDetails;
