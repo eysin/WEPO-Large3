@@ -4,7 +4,7 @@ import { Container, Row, Col } from "shards-react";
 import { Link } from 'react-router-dom';
 import { getProducts } from '../../services/productService';
 
-const Product = (props) => {
+const Checkout = () => {
   const [ products, setProducts ] = useState([]);
   
   useEffect(() => {
@@ -38,11 +38,6 @@ const Product = (props) => {
       ) : null}
     </Container>
     )
-}
-
-Product.propTypes = {
-    //Stores the information on where the customer is 
-    location: PropTypes.object.isRequired
 }
 
 

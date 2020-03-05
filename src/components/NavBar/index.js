@@ -24,7 +24,7 @@ const NavBar = () => {
       </Nav>
       <Nav navbar className="ml-auto">
           <NavItem>
-            <NavLink to="/cart"><i class="fa fa-shopping-cart"></i></NavLink>
+            <NavLink to="/cart"><i className="fa fa-shopping-cart"></i></NavLink>
           </NavItem>
       </Nav>
     </Navbar>

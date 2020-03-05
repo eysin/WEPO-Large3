@@ -1,41 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'shards-react';
+import { getProducts } from '../../services/productService';
 
-class Cart extends React.Component {
-	componentDidMount() {
-		let cart = localStorage.getItem('cart');
-		if (cart !== undefined) {
-			this.setState({
-				cart: cart,
-			});
+
+const Cart = (props) => {
+  const [ cart, setCart ] = useState([]);
+  
+  useEffect(() => {
+	let localCart = window.localStorage.getItem("cart");
+	let tempCart = []
+	if(localCart != null){
+		localCart = JSON.parse(localCart)
+		for(let bubble in localCart){
+			tempCart.push(localCart[bubble])
 		}
+		console.log(tempCart)
 	}
-	state = {
-		cart: [],
-	};
-	render() {
-		const cart = this.state;
-		return (
-			<h1>Hello Kitty CAT</h1>
-			// <Container>
-			// 	{cart.length != 0 ? (
-			// 		<Row>
-			// 			{cart.map((value, index) => (
-			// 				<Col sm="4" key={index} className="productContainer">
-			// 					<Link
-			// 						to={{ pathname: `/products/${value.id}`, product: value }}
-			// 					>
-			// 						{value.name}
-			// 					</Link>
-			// 					<img src={value.image} />
-			// 					<p>{value.description}</p>
-			// 				</Col>
-			// 			))}
-			// 		</Row>
-			// 	) : null}
-			// </Container>
-		);
-	}
+    setCart(tempCart)
+  }, []);
+  console.log(cart)
+  return (
+		<Container>
+			<h1>Cart</h1>
+			<table className="table">
+				<thead>
+					<tr>
+					<th>Bubble Name</th>
+					<th>Price</th>
+					<th>Count</th>
+					<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{cart.map((value, index) => (
+					<tr key={index}>
+						<td>{value.name}</td>
+						<td>{value.count}</td>
+						<td>{value.price}</td>
+						<td>{value.count * value.price}</td>
+					</tr>
+					))}
+				
+				</tbody>
+			</table>
+			
+			{cart.length === 0 ? 
+				<p>Cart is empty</p> :
+				<a href="/checkout">Proceed to checkout</a>
+
+			}
+		</Container>
+        
+    )
 }
 
 export default Cart;

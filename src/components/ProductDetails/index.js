@@ -1,43 +1,66 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container } from 'shards-react';
 
-class ProductDetails extends React.Component {
-	componentDidMount() {
-		const product = this.props.location.product;
-		if (product.id !== undefined) {
-			this.setState({
-				id: product.id,
-				name: product.name,
-				description: product.description,
-				price: product.price,
-				image: product.image,
-			});
-		}
-	}
-	state = {
-		id: '',
-		name: '',
-		description: '',
-		price: '',
-		image: '',
-	};
-	render() {
-		const { id, name, description, price, image } = this.state;
-		return (
-			<Container>
-				<h3>{name}</h3>
-				<img src={image} />
-				<p>{description}</p>
-				<p>Price: {price}</p>
-			</Container>
-		);
-	}
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Container } from "shards-react";
+import { getProducts } from '../../services/productService';
+
+
+const Product = (props) => {
+  const [ product, setProduct ] = useState();
+  
+  useEffect(() => {
+    getProducts(props.match.params.productId)
+    .then(res =>{
+      setProduct(res)
+    })
+    
+  }, []);
+  console.log(product)
+  return (
+    <Container>
+        {product != undefined ?
+          <div>
+            <h3>{product.name}</h3>
+            <img src={product.image} />
+            <p>{product.description}</p>
+            <p>Price: {product.price}</p>
+            <input type="button" value="Add to Cart" onClick={() => addToCart(product)}/>
+          </div>
+        :
+        <p>Fetching</p>
+        }
+        </Container>
+        
+    )
 }
 
-ProductDetails.prototype = {
-	// The Product we are getting details for
-	product: PropTypes.object,
-};
 
-export default ProductDetails;
+const addToCart = (product) =>{
+  //This circular thing is here to ensure the parsing doesn't crash when cart is empty
+  let cart = window.localStorage.getItem("cart")
+  if(window.localStorage.getItem("cart") === null){
+      cart = JSON.stringify({})
+  }
+  cart = JSON.parse(cart)
+
+
+  if(cart[product.id] === undefined){
+    
+    cart[product.id] = product
+    cart[product.id].count = 1
+  }
+  else{
+    cart[product.id].count += 1
+  }
+
+  window.localStorage.setItem("cart", JSON.stringify(cart))
+
+}
+
+Product.propTypes = {
+    //Stores the information on where the customer is 
+    location: PropTypes.object.isRequired
+}
+
+
+export default Product;
