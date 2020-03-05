@@ -13,6 +13,8 @@ import Main from './Main';
 
 
 const App = () => {
+    
+
     return (
     <React.Fragment>
         <NavBar />
@@ -28,7 +30,6 @@ const App = () => {
         </Container>
     </React.Fragment>
     )
-    return <p>Start working here!</p>
 };
 
 export default App;

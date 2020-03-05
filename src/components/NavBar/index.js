@@ -15,14 +15,17 @@ const NavBar = () => {
         <NavItem>
           <NavLink to="/bundles">Bundles</NavLink>
         </NavItem>
+        
         <NavItem>
           <NavLink to="/about">About us</NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink to="/cart">Cart</NavLink>
-        </NavItem>
-            
+        
 
+      </Nav>
+      <Nav navbar className="ml-auto">
+          <NavItem>
+            <NavLink to="/cart">Cart</NavLink>
+          </NavItem>
       </Nav>
     </Navbar>
   )

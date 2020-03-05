@@ -1,8 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row, Col } from "shards-react";
 
-const Product = () => {
+import { getProducts } from '../../services/productService';
 
-  return <h1>Product</h1>
+const Product = (props) => {
+  const [ products, setProducts ] = useState([]);
+  
+  useEffect(() => {
+    getProducts()
+    .then(products => {
+      console.log(products)
+      setProducts(JSON.parse(JSON.stringify(products)))
+    })
+    
+  }, []);
+  console.log(props)
+  return (
+      <Container>{products.length != 0 ? 
+        <Row>
+          {products.map((value, index) => 
+            <Col sm="4" key={index} className="productContainer">
+             <a href={"/products/" + value.id}><h3>{ value.name}</h3></a>
+             <img src={value.image}/>
+             <p>{value.description}</p>
+            </Col>
+          )}
+         </Row>
+          :null}
+      </Container>
+    )
 }
+
+Product.propTypes = {
+
+}
+
 
 export default Product;

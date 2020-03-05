@@ -2,8 +2,13 @@
 li a{
     color: white;
     margin-right: 25px;
+    font-size: large;
 }
 #navLogo{
     width: 60px;
-    margin-right: 50px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+.productContainer{
+    padding: 1%;
 }
