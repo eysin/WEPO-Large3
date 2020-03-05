@@ -12,6 +12,7 @@ import Cart from './Cart';
 import NotFound from './NotFound';
 import Orders from './Orders';
 import Checkout from './Checkout';
+import Success from './Success';
 import Main from './Main';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
 					<Route exact path="/about" component={About} />
 					<Route exact path="/orders(/:orderId)" component={Orders} />
 					<Route exact path="/checkout" component={Checkout} />
+					<Route exact path="/success" component={Success} />
 					<Route exact path="/cart" component={Cart} />
 					<Route component={NotFound} />
 				</Switch>

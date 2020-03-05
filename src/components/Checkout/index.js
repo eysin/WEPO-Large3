@@ -30,6 +30,7 @@ const Checkout = () => {
       }
       else{
         localStorage.removeItem("cart");
+        localStorage.setItem(JSOn.stringify(envelope))
         window.location.href = "/success";
       }
       console.log(res)
