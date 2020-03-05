@@ -10,6 +10,8 @@ import Products from './Products';
 import ProductDetails from './ProductDetails';
 import Cart from './Cart';
 import NotFound from './NotFound';
+import Orders from './Orders';
+import Checkout from './Checkout';
 import Main from './Main';
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
 					<Route exact path="/products" component={Products} />
 					<Route exact path="/bundles" component={Bundles} />
 					<Route exact path="/about" component={About} />
+					<Route exact path="/orders(/:orderId)" component={Orders} />
+					<Route exact path="/checkout" component={Checkout} />
 					<Route exact path="/cart" component={Cart} />
 					<Route component={NotFound} />
 				</Switch>
