@@ -1,23 +1,19 @@
-import React,  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getBundles, getProducts } from '../../services/productService';
 import { Container, Row, Col } from 'shards-react';
 
-const Bundles = (props) => {
-	const [ products, setProducts ] = useState([]);
-	const [ bundles, setBundles ] = useState([]);
-	
+const Bundles = () => {
+	const [products, setProducts] = useState([]);
+	const [bundles, setBundles] = useState([]);
+
 	useEffect(() => {
-		getBundles()
-		.then(res => {
-			setBundles(res)
-		})
-		getProducts()
-		.then(res => {
-			setProducts(res)
-		})
-		
-	  
+		getBundles().then(res => {
+			setBundles(res);
+		});
+		getProducts().then(res => {
+			setProducts(res);
+		});
 	}, []);
 	return (
 		<Container>
@@ -32,7 +28,7 @@ const Bundles = (props) => {
 							<h3>
 								{value.items.map((element, key) => {
 									let i = products.find(i => i.id == element);
-									if(i != undefined){
+									if (i != undefined) {
 										return (
 											<div key={key}>
 												<img src={i.image} />
@@ -40,7 +36,6 @@ const Bundles = (props) => {
 											</div>
 										);
 									}
-									
 								})}
 							</h3>
 						</Col>
@@ -49,34 +44,6 @@ const Bundles = (props) => {
 			) : null}
 		</Container>
 	);
-}
+};
 
-Bundles.propTypes = {
-	//Stores the information on where the customer is 
-	location: PropTypes.object.isRequired
-}
-  
-/*
-class Bundles extends React.Component {
-	componentDidMount() {
-		let bundles = getBundles();
-		let products = getProducts();
-		console.log(products.find(obj => obj.id == 1));
-
-		this.setState({
-			bundles: bundles,
-			products: products,
-		});
-	}
-	state = {
-		bundles: [],
-		products: [],
-	};
-	render() {
-		const bundles = this.state;
-		return <p>Temp</p>
-		
-	}
-}
-*/
 export default Bundles;
