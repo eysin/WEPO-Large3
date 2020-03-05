@@ -25,15 +25,15 @@ const Checkout = () => {
       
     })
     .then(res =>{
+      console.log(res)
       if(res.status !== 200){
         alert(res.statusText)
       }
       else{
-        localStorage.removeItem("cart");
-        localStorage.setItem(JSOn.stringify(envelope))
+        window.localStorage.removeItem("cart")
+        window.localStorage.setItem("user", JSON.stringify(envelope))
         window.location.href = "/success";
       }
-      console.log(res)
     })
 
   }
