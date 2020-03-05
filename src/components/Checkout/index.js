@@ -1,40 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'shards-react';
+import { Container, Form, FormGroup, FormRadio, FormInput } from 'shards-react';
 import { Link } from 'react-router-dom';
 import { getProducts } from '../../services/productService';
 
 const Checkout = () => {
-	const [products, setProducts] = useState([]);
+	const [storePickup, setStorePickup] = useState(false);
+	const [formStage, setFormStage] = useState(0);
 
-	useEffect(() => {
-		getProducts().then(products => {
-			setProducts(JSON.parse(JSON.stringify(products)));
-		});
-	}, []);
+	useEffect(() => {});
+
 	return (
 		<Container>
-			<div id="products-text">
-				<h1>Our Products</h1>
-			</div>
-			{products.length != 0 ? (
-				<Row>
-					{products.map((value, index) => (
-						<Col sm="4" key={index} className="productContainer">
-							<h3>
-								<Link
-									to={{ pathname: `/products/${value.id}`, product: value }}
-								>
-									{value.name}
-								</Link>
-							</h3>
-							<img src={value.image} />
-						</Col>
-					))}
-				</Row>
-			) : null}
+			<h1>Checkout</h1>
+			<Form>
+				<FormGroup>
+					<FormRadio
+						id="#username"
+						placeholder="Username"
+						checked={!storePickup}
+						onChange={() => setStorePickup(false)}
+						inline
+					>
+						Store Pickup
+					</FormRadio>
+					<FormRadio
+						id="#username"
+						placeholder="Username"
+						checked={storePickup}
+						onChange={() => setStorePickup(true)}
+						inline
+					>
+						Home Delivery
+					</FormRadio>
+				</FormGroup>
+				{storePickup ? (
+					//Store pickup is picked
+					<FormGroup>
+						<FormGroup>
+							<label htmlFor="#name">Name</label>
+							<FormInput id="#name" placeholder="Name" />
+						</FormGroup>
+						<FormGroup>
+							<label htmlFor="#address">Address</label>
+							<FormInput id="#address" placeholder="Address" />
+						</FormGroup>
+						<FormGroup>
+							<label htmlFor="#city">City</label>
+							<FormInput id="#city" placeholder="City" />
+						</FormGroup>
+						<FormGroup>
+							<label htmlFor="#telephone">Telephone</label>
+							<FormInput id="#telephone" placeholder="Telephone" />
+						</FormGroup>
+						<FormGroup>
+							<label htmlFor="#postCode">Postal Code</label>
+							<FormInput id="#postCode" placeholder="Postal Code" />
+						</FormGroup>
+					</FormGroup>
+				) : (
+					<FormGroup>
+						<FormGroup>
+							<label htmlFor="#name">Name</label>
+							<FormInput id="#name" placeholder="Name" />
+						</FormGroup>
+
+						<FormGroup>
+							<label htmlFor="#telephone">Telephone</label>
+							<FormInput id="#telephone" placeholder="Telephone" />
+						</FormGroup>
+					</FormGroup>
+				)}
+			</Form>
 		</Container>
 	);
 };
 
-export default Product;
+export default Checkout;

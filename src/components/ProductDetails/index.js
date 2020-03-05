@@ -5,12 +5,14 @@ import { getProducts } from '../../services/productService';
 
 const Product = props => {
 	const [product, setProduct] = useState();
+	const [cartAdded, setCartAdded] = useState(false);
 
 	useEffect(() => {
 		getProducts(props.match.params.productId).then(res => {
 			setProduct(res);
 		});
-	}, []);
+	}, [cartAdded]);
+	console.log(product);
 	return (
 		<Container>
 			{product != undefined ? (
@@ -22,8 +24,11 @@ const Product = props => {
 					<input
 						type="button"
 						value="Add to Cart"
-						onClick={() => addToCart(product)}
+						onClick={() => addToCart(product, setCartAdded)}
 					/>
+					<p>
+						{cartAdded ? <a href="/checkout">Proceed to Checkout</a> : null}
+					</p>
 				</div>
 			) : (
 				<p>Fetching</p>
@@ -32,7 +37,7 @@ const Product = props => {
 	);
 };
 
-const addToCart = product => {
+const addToCart = (product, setCartAdded) => {
 	//This circular thing is here to ensure the parsing doesn't crash when cart is empty
 	let cart = window.localStorage.getItem('cart');
 	if (window.localStorage.getItem('cart') === null) {
@@ -48,6 +53,7 @@ const addToCart = product => {
 	}
 
 	window.localStorage.setItem('cart', JSON.stringify(cart));
+	setCartAdded(true);
 };
 
 Product.propTypes = {
