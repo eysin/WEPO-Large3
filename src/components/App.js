@@ -7,6 +7,7 @@ import NavBar from './NavBar';
 import About from './About';
 import Bundles from './Bundles';
 import Products from './Products';
+import ProductDetails from './ProductDetails'
 import Cart from './Cart';
 import NotFound from './NotFound';
 import Main from './Main';
@@ -21,6 +22,7 @@ const App = () => {
         <Container>
         <Switch>
             <Route exact path="/" component={ Main } />
+            <Route path="/products/:id" component={ ProductDetails } />
             <Route path="/products" component={ Products } />
             <Route path="/bundles" component={ Bundles } />
             <Route path="/about" component={ About } />

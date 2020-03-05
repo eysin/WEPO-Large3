@@ -15,7 +15,6 @@ const Product = (props) => {
     })
     
   }, []);
-  console.log(props)
   return (
       <Container>{products.length != 0 ? 
         <Row>
@@ -33,7 +32,8 @@ const Product = (props) => {
 }
 
 Product.propTypes = {
-
+    //Stores the information on where the customer is 
+    location: PropTypes.object.isRequired
 }
 
 

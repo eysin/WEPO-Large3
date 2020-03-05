@@ -1,6 +1,6 @@
 
-export const getProduct = () => {
-    return fetch('http://localhost:3500/api/bubbles')
+export const getDetails = (id) => {
+    return fetch('http://localhost:3500/api/bubbles/' + id)
     .then(res => {
         return res.json();
     })
